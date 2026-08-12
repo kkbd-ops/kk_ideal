@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1220" />
+  <title>数字IC面试模拟器</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <p class="eyebrow">DIGITAL IC · INTERVIEW PRACTICE</p>
+      <h1>数字 IC 面试模拟器</h1>
+      <p class="sub">像 HR/面试官一样随机提问，写下你的回答，再与资料中的参考答案逐点对照。</p>
+    </header>
+
+    <section class="dashboard" aria-label="练习状态">
+      <div><span>题库总数</span><strong id="bankCount">0</strong></div>
+      <div><span>已作答</span><strong id="answeredCount">0</strong></div>
+      <div><span>平均匹配度</span><strong id="averageScore">—</strong></div>
+      <div><span>本题计时</span><strong id="timer">00:00</strong></div>
+      <button id="resetProgress" class="text-button" type="button">重置进度</button>
+    </section>
+
+    <section class="control-panel">
+      <label>面试模式
+        <select id="modeSelect">
+          <option value="random">随机模拟</option>
+          <option value="category">分类练习</option>
+          <option value="mistakes">只练薄弱题</option>
+        </select>
+      </label>
+      <label>知识方向
+        <select id="categorySelect"></select>
+      </label>
+      <label>难度
+        <select id="difficultySelect">
+          <option value="all">全部难度</option>
+          <option value="基础">基础</option>
+          <option value="进阶">进阶</option>
+          <option value="综合">综合</option>
+        </select>
+      </label>
+      <button id="nextQuestion" class="primary" type="button">开始模拟 →</button>
+    </section>
+
+    <section class="question-card" aria-live="polite">
+      <div class="question-meta"><span id="questionCategory">准备开始</span><span id="questionDifficulty"></span></div>
+      <p class="interviewer">面试官提问</p>
+      <h2 id="questionText">选择模式后，点击“开始模拟”。</h2>
+      <p id="followUp" class="follow-up"></p>
+    </section>
+
+    <section class="answer-area">
+      <div class="answer-heading"><label for="answerInput">你的回答</label><span id="wordCount">0 字</span></div>
+      <textarea id="answerInput" placeholder="建议按：定义 → 原理 → 风险/场景 → 解决方案，组织 1–3 分钟回答。" disabled></textarea>
+      <div class="answer-actions">
+        <button id="submitAnswer" class="primary" type="button" disabled>提交回答并对比</button>
+        <button id="showAnswer" class="secondary" type="button" disabled>直接查看参考答案</button>
+      </div>
+    </section>
+
+    <section id="reviewPanel" class="review hidden" aria-live="polite">
+      <div class="review-title"><div><p class="eyebrow">REVIEW</p><h2>回答对比</h2></div><div id="scoreBadge" class="score-badge"></div></div>
+      <div class="comparison-grid">
+        <article><h3>你的回答要点</h3><p id="userAnswerDisplay"></p></article>
+        <article><h3>资料参考答案</h3><p id="referenceAnswer"></p></article>
+      </div>
+      <div class="feedback"><h3>模拟面试官点评</h3><p id="feedbackText"></p><div id="keywordChips" class="chips"></div></div>
+      <button id="nextAfterReview" class="primary" type="button">下一题 →</button>
+    </section>
+
+    <section class="tips">
+      <h2>高分回答框架</h2>
+      <ol><li>先给出一句定义，表明你知道问题边界。</li><li>解释关键机制或时序关系，避免只背结论。</li><li>补充工程风险、取舍和常见解决方案。</li></ol>
+      <p>题库已按原始资料逐条覆盖，保留资料来源与对应答案；匹配度为关键词辅助评价，重点仍是你能否讲清逻辑。</p>
+    </section>
+  </main>
+  <script src="./questions.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
